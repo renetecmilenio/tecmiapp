@@ -1,10 +1,11 @@
 // Script semilla para servicios - Genera servicios de ejemplo
+require('dotenv').config()
 const { sequelize } = require('../src/config/db')
 
 // Manejo mejorado de errores de importación
 let User, Service
 try {
-  User = require('../src/models/Users')
+  User = require('../src/models/User')
   Service = require('../src/models/Service')
 } catch (error) {
   console.error('❌ Error al importar modelos:', error.message)

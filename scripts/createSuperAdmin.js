@@ -1,6 +1,7 @@
 // Script para crear el superadmin inicial - Sesión 4
+require('dotenv').config()
 const { sequelize } = require('../src/config/db')
-const User = require('../src/models/Users')
+const User = require('../src/models/User')
 
 async function crearSuperAdmin () {
   try {

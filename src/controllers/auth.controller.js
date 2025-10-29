@@ -177,5 +177,6 @@ module.exports = {
   registro,
   login,
   crearUsuario,
+  generarToken, // Exportamos esta función para poder probarla
   JWT_SECRET
 }

@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest",
+    "create-superadmin": "node scripts/createSuperAdmin.js",
+    "seed-services": "node scripts/seedServices.js"
   },
   "keywords": [],
   "author": "",
@@ -13,18 +16,22 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.3.0",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.2",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "cross-env": "^10.1.0",
-    "jest": "^30.0.2",
+    "jest": "^30.2.0",
     "nodemon": "^3.1.10",
-    "standard": "^17.1.2",
-    "supertest": "^7.1.1"
+    "standard": "^17.1.2"
   },
   "eslintConfig": {
     "extends": "standard",

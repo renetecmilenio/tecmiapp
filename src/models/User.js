@@ -63,6 +63,7 @@ const User = sequelize.define('User', {
 
 // Método para verificar contraseña
 User.prototype.verificarPassword = async function (password) {
+  if (!password) return false // Manejar casos undefined/null/empty
   return await bcrypt.compare(password, this.password)
 }
 
