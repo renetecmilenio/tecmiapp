@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "3003:3002"
+      - "3002:3002"
     environment:
       - DB_HOST=mysql
       - DB_PORT=3306
