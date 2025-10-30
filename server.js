@@ -37,9 +37,20 @@ const authLimiter = process.env.NODE_ENV === 'test'
   : rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
     max: 5, // máximo 5 intentos de login por IP
-    message: 'Demasiados intentos de login, intenta de nuevo más tarde.',
+    message: JSON.stringify({
+      success: false,
+      message: 'Demasiados intentos de autenticación, intenta de nuevo más tarde.',
+      error: 'RATE_LIMIT_EXCEEDED'
+    }),
     standardHeaders: true,
-    legacyHeaders: false
+    legacyHeaders: false,
+    handler: (req, res) => {
+      res.status(429).json({
+        success: false,
+        message: 'Demasiados intentos de autenticación, intenta de nuevo más tarde.',
+        error: 'RATE_LIMIT_EXCEEDED'
+      })
+    }
   })
 
 app.use(limiter)
