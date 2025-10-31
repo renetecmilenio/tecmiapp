@@ -711,7 +711,15 @@
               btn.disabled = false
             }, 3000)
           } else {
-            mostrarMensaje(`❌ Error al crear usuario: ${data.mensaje}`, 'error')
+            // Mostrar errores específicos de validación si existen
+            let mensajeError = `❌ Error al crear usuario: ${data.message || data.mensaje}`
+
+            if (data.errors && Array.isArray(data.errors) && data.errors.length > 0) {
+              const erroresEspecificos = data.errors.map(error => `• ${error.msg}`).join('<br>')
+              mensajeError += `<br><strong>Errores de validación:</strong><br>${erroresEspecificos}`
+            }
+
+            mostrarMensaje(mensajeError, 'error')
 
             // Feedback temporal en el botón
             btn.textContent = '❌ Error'

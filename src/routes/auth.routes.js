@@ -47,6 +47,8 @@ const loginValidation = [
     .withMessage('Debe proporcionar un email válido')
     .normalizeEmail(),
   body('password')
+    .isLength({ min: 2, max: 6 })
+    .withMessage('El password debe tener entre 2 y 6 caracteres')
     .notEmpty()
     .withMessage('La contraseña es requerida'),
   handleValidationErrors

@@ -9,7 +9,7 @@ describe('Funciones de Autenticación de la App', () => {
     test('debe generar token válido usando nuestra función', () => {
       const usuarioMock = {
         id: 1,
-        email: 'test@example.com',
+        email: 'admin@test.com',
         rol: 'cliente'
       }
 

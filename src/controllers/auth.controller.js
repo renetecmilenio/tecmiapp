@@ -6,6 +6,9 @@ const JWT_SECRET = process.env.JWT_SECRET || 'clave_secreta_por_defecto'
 
 // Generar token JWT
 const generarToken = (usuario) => {
+  if (!usuario || !usuario.id || !usuario.email || !usuario.rol) {
+    throw new Error('Información de usuario incompleta para generar token')
+  }
   return jwt.sign(
     {
       id: usuario.id,

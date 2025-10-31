@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3002:3002"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=@Tecmilenio2025
+      - DB_NAME=tecmiapp
+      - JWT_SECRET=tu_clave_secreta_super_segura_2025
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=@Tecmilenio2025
+      - MYSQL_DATABASE=tecmiapp
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
