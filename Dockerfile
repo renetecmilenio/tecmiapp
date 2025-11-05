@@ -1,20 +1,12 @@
 # Dockerfile para TecmiApp
 FROM node:18-alpine
 
-# Crear directorio de trabajo
 WORKDIR /app
-
-# Copiar package.json
 COPY package*.json ./
-
-# Instalar dependencias
 RUN npm install
-
-# Copiar código
 COPY . .
 
-# Exponer puerto
-EXPOSE 3003
+EXPOSE 3002
 
-# Comando para iniciar con delay simple
-CMD ["sh", "-c", "sleep 5 && npm start"]
+# Retrasa el inicio para esperar a MySQL
+CMD ["sh", "-c", "sleep 10 && npm start"]

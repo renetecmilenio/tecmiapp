@@ -2,26 +2,27 @@ services:
   app:
     build: .
     ports:
-      - "${PORT}:${PORT}"
+      - "3002:3002"
     environment:
-      - DB_HOST=mysql # Sobrescribe DB_HOST para contenedores
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
-      - JWT_SECRET=${JWT_SECRET}
-      - PORT=${PORT}
-      - CORS_ORIGIN=${CORS_ORIGIN}
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=@Tecmilenio2025
+      - DB_NAME=tecmiapp
+      - JWT_SECRET=tu_clave_secreta_super_segura_2025
+      - PORT=3002
+      - CORS_ORIGIN=http://localhost:3002
     depends_on:
       - mysql
 
   mysql:
     image: mysql:8.0
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=@Tecmilenio2025
+      - MYSQL_DATABASE=tecmiapp
     ports:
-      - "3309:3306"
+      - "3309:3306" # puerto expuesto a tu máquina
     volumes:
       - mysql_data:/var/lib/mysql
 
