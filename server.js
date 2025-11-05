@@ -3,6 +3,9 @@ const express = require('express') // CJS
 const path = require('node:path')
 const { connectDB } = require('./src/config/db')
 
+// ✅ Esto es lo que falta:
+app.set('trust proxy', 1) // Indica que Express está detrás de un proxy (como Railway o Render)
+
 const cors = require('cors')
 
 const helmet = require('helmet')
