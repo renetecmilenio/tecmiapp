@@ -6,8 +6,8 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "test": "jest",
-    "create-superadmin": "node scripts/createSuperAdmin.js",
-    "seed-services": "node scripts/seedServices.js"
+    "test:coverage": "jest --coverage",
+    "create-superadmin": "node scripts/createSuperAdmin.js"
   },
   "keywords": [],
   "author": "",

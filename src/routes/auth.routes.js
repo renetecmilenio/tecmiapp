@@ -69,8 +69,8 @@ const crearUsuarioValidation = [
     .isLength({ min: 6 })
     .withMessage('La contraseña debe tener al menos 6 caracteres'),
   body('rol')
-    .isIn(['cliente', 'administrador', 'superadmin'])
-    .withMessage('El rol debe ser cliente, administrador o superadmin'),
+    .isIn(['cliente', 'admin', 'superadmin'])
+    .withMessage('El rol debe ser cliente, admin o superadmin'),
   body('telefono')
     .optional()
     .isMobilePhone('es-MX')

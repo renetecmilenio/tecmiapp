@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Exponer puerto
-EXPOSE 3002
+EXPOSE 3003
 
 # Comando para iniciar con delay simple
 CMD ["sh", "-c", "sleep 5 && npm start"]
