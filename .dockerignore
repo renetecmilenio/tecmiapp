@@ -6,3 +6,5 @@ Dockerfile
 .dockerignore
 tests/
 coverage
+.env
+.env.docker

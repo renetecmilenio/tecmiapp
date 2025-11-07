@@ -2,21 +2,18 @@ services:
   app:
     build: .
     ports:
-      - "${PORT}:${PORT}"
+      - "3003:3003" # Usa el puerto del .env.docker
+    env_file:
+      - .env.docker
     environment:
-      - DB_HOST=mysql # Sobrescribe DB_HOST para contenedores
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
-      - JWT_SECRET=${JWT_SECRET}
-      - PORT=${PORT}
-      - CORS_ORIGIN=${CORS_ORIGIN}
+      - DB_HOST=mysql
     depends_on:
       - mysql
 
   mysql:
     image: mysql:8.0
+    env_file:
+      - .env.docker
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=${DB_NAME}
