@@ -8,9 +8,6 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 
-// Importar modelos
-require('./src/models/index')
-
 const app = express()
 const PORT = process.env.PORT || 3000
 
