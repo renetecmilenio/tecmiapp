@@ -2,54 +2,25 @@
 const Service = require('../models/Service')
 const User = require('../models/User')
 
-// Obtener todos los servicios (público para home, filtrado para dashboard)
 const obtenerServicios = async (req, res) => {
   try {
     const usuario = req.usuario // Puede ser undefined si no está autenticado
-    let servicios
 
-    if (!usuario) {
-      // Vista pública: mostrar todos los servicios
-      servicios = await Service.findAll({
-        include: [{
-          model: User,
-          as: 'usuario',
-          attributes: ['id', 'nombre', 'rol']
-        }],
-        order: [['createdAt', 'DESC']]
-      })
-    } else if (usuario.rol === 'superadmin') {
-      // Superadmin: ver todos los servicios
-      servicios = await Service.findAll({
-        include: [{
-          model: User,
-          as: 'usuario',
-          attributes: ['id', 'nombre', 'rol']
-        }],
-        order: [['createdAt', 'DESC']]
-      })
-    } else if (usuario.rol === 'admin') {
-      // Admin: solo sus servicios
-      servicios = await Service.findAll({
-        where: { usuarioId: usuario.id },
-        include: [{
-          model: User,
-          as: 'usuario',
-          attributes: ['id', 'nombre', 'rol']
-        }],
-        order: [['createdAt', 'DESC']]
-      })
-    } else {
-      // Cliente: ver todos los servicios (solo lectura)
-      servicios = await Service.findAll({
-        include: [{
-          model: User,
-          as: 'usuario',
-          attributes: ['id', 'nombre', 'rol']
-        }],
-        order: [['createdAt', 'DESC']]
-      })
+    const query = {
+      include: [{
+        model: User,
+        as: 'usuario',
+        attributes: ['id', 'nombre', 'rol']
+      }],
+      order: [['createdAt', 'DESC']]
     }
+
+    // Solo admin ve únicamente sus servicios
+    if (usuario?.rol === 'admin') {
+      query.where = { usuarioId: usuario.id }
+    }
+
+    const servicios = await Service.findAll(query)
 
     res.json({
       error: false,
